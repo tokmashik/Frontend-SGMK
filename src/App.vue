@@ -49,10 +49,12 @@
     <v-main>
         <v-content>
               <v-container fluid>
-
+        <AppSearch />
                         <AppTable />
                         
                         <AppDialog />
+
+
               </v-container>
 
         </v-content>
@@ -65,12 +67,14 @@
 
 import AppTable from "@/components/AppTable"
 import AppDialog from "@/components/AppDialog"
+import AppSearch from "@/components/AppDialog"
 export default {
   name: 'App',
 
   components: {
   AppTable,
-  AppDialog
+  AppDialog,
+  AppSearch,
   },
   data () {
     return {
@@ -89,7 +93,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 .v-avatar {
 margin-top: 8;
 width: 32;

@@ -1,17 +1,54 @@
 <template>
   <div>
     <h1  max-height="600">ТС на приемке по качеству июнь 2022</h1> 
+    
+  <v-btn>
+  <v-row justify="center">
+    <v-dialog
+      v-model="dialog"
+      persistent
+      max-width="600px"
+    >
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          color="primary"
+          dark
+          v-bind="attrs"
+          v-on="on"
+        >
+          Open Dialog
+        </v-btn>
+      </template>
 
+      <v-card>
+        <v-card-text>
+          <v-container>
+            
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="blue darken-1"
+            text
+            @click="dialog = false"
+          >
+            Close
+          </v-btn>
+          <v-btn
+            color="blue darken-1"
+            text
+            @click="dialog = false"
+          >
+            Save
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-row>
+  </v-btn>
   <v-card>
-    <v-card-title>
-      <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Search"
-        single-line
-        hide-details
-      ></v-text-field>
-    </v-card-title>
+
     <v-data-table
       :headers="headers"
       :items="desserts"
@@ -24,6 +61,7 @@
 
 <script>
   export default {
+    
     data () {
       return {
         page: 1,
@@ -263,16 +301,10 @@
             Направление: 'ЗСМК ОАО',
             Получатель: 'ЗСМК (05785874)',
           },
-
         ],
+        dialog: false,
       }
     },
   }
 </script>
 
-<style>
-h1 {
-    min-height: 400;
-
-}
-</style>
