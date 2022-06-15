@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "2",
+		"typescript.tsdk": "node_modules/typescript/lib"
+	}
+}

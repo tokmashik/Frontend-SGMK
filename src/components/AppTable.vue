@@ -1,7 +1,17 @@
 <template>
   <div>
-    <h1  max-height="600">ТС на приемке по качеству июнь 2022</h1> 
-    
+    <v-card-title>
+          <h1  max-height="600">ТС на приемке по качеству июнь 2022</h1> 
+     <v-spacer></v-spacer>
+    <v-text-field
+        v-model="search"
+        append-icon="search"
+        label="Search"
+        single-line
+        hide-details
+      ></v-text-field>
+    </v-card-title>
+
   <v-btn>
   <v-row justify="center">
     <v-dialog

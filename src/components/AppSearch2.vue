@@ -1,6 +1,9 @@
 <template>
   <v-toolbar
-  color="">
+    dark
+    color="#EA5F4B"
+  >
+    <v-toolbar-title>State selection</v-toolbar-title>
     <v-autocomplete
       v-model="select"
       :loading="loading"
@@ -11,10 +14,12 @@
       flat
       hide-no-data
       hide-details
-      label="Поиск по системе"
+      label="What state are you from?"
       solo-inverted
     ></v-autocomplete>
-  
+    <v-btn icon>
+      <v-icon>mdi-dots-vertical</v-icon>
+    </v-btn>
   </v-toolbar>
 </template>
 

@@ -24,6 +24,8 @@
       <v-btn icon color="grey darken-1">
             <v-icon>mdi-menu</v-icon>
           </v-btn>
+
+                  <AppSearch />
       <v-spacer></v-spacer>  
         <v-toolbar-items> 
 
@@ -49,9 +51,9 @@
     <v-main>
         <v-content>
               <v-container fluid>
-        <AppSearch />
+
                         <AppTable />
-                        
+                         <router-view></router-view>
                         <AppDialog />
 
 
@@ -60,6 +62,9 @@
         </v-content>
     </v-main>
 
+  <v-footer app>
+    <!-- -->
+  </v-footer>
   </v-app>
 </template>
 
@@ -67,7 +72,7 @@
 
 import AppTable from "@/components/AppTable"
 import AppDialog from "@/components/AppDialog"
-import AppSearch from "@/components/AppDialog"
+import AppSearch from "@/components/AppSearch"
 export default {
   name: 'App',
 
