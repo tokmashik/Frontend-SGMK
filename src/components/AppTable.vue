@@ -1,31 +1,26 @@
 <template>
   <div>
     <v-card-title>
-          <h1  max-height="600">ТС на приемке по качеству июнь 2022</h1> 
-     <v-spacer></v-spacer>
+    <h1  max-height="600">ТС на приемке по качеству июнь 2022</h1> 
+    <v-spacer></v-spacer>
     <v-text-field
         v-model="search"
-        append-icon="search"
         label="Search"
         single-line
         hide-details
       ></v-text-field>
+      <!--append-icon="search"-->  
     </v-card-title>
-
-  <v-btn>
-  <v-row justify="center">
-    <v-dialog
+     <v-dialog
       v-model="dialog"
       persistent
-      max-width="600px"
-    >
+      max-width="600px">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-          color="primary"
+          color="#EA5F4B"
           dark
           v-bind="attrs"
-          v-on="on"
-        >
+          v-on="on">
           Open Dialog
         </v-btn>
       </template>
@@ -33,7 +28,7 @@
       <v-card>
         <v-card-text>
           <v-container>
-            
+            content
           </v-container>
         </v-card-text>
         <v-card-actions>
@@ -41,31 +36,45 @@
           <v-btn
             color="blue darken-1"
             text
-            @click="dialog = false"
-          >
+            @click="dialog = false">
             Close
           </v-btn>
           <v-btn
             color="blue darken-1"
             text
-            @click="dialog = false"
-          >
+            @click="dialog = false">
             Save
           </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-row>
-  </v-btn>
-  <v-card>
+ 
 
+  <v-card>
     <v-data-table
       :headers="headers"
-      :items="desserts"
+      :items="ts"
       :search="search"
-    ></v-data-table>
+    >
+    <template v-slot:items="props">
+        <td>{{ props.item.name }}</td>
+        <td class="text-xs-right">{{ props.item.ТС }}</td>
+        <td class="text-xs-right">{{ props.item.nТС }}</td>
+        <td class="text-xs-right">{{ props.item.nНакладной }}</td>
+        <td class="text-xs-right">{{ props.item.ДатаОтгрузки }}</td>
+        <td class="text-xs-right">{{ props.item.Поставщик }}</td>
+        <td class="text-xs-right">{{ props.item.Отправитель }}</td>
+        <td class="text-xs-right">{{ props.item.МестоОтправления }}</td>
+        <td class="text-xs-right">{{ props.item.Направление }}</td>
+        <td class="text-xs-right">{{ props.item.Получатель }}</td>
+      </template>
+      <template v-slot:no-results>
+        <v-alert :value="true" color="error" icon="warning">
+          Your search for "{{ search }}" found no results.
+        </v-alert>
+      </template>
+    </v-data-table>
   </v-card>
-
   </div>
 </template>
 
@@ -76,7 +85,8 @@
       return {
         page: 1,
         pageCount: 0,
-        itemsPerPage: 20,
+        itemsPerPage: 10,
+        search: '',
         headers: [
           {
             text: 'ID',
@@ -94,7 +104,7 @@
           { text: 'Направление', value: 'Направление' },
           { text: 'Получатель', value: 'Получатель' },
         ],
-        desserts: [
+        ts: [
           {
             ID: '34554',
             ТС: 'img',

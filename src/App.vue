@@ -19,16 +19,12 @@
       </v-list> 
     </v-navigation-drawer>
     <v-app-bar app class="white" dense dark>
-
-
       <v-btn icon color="grey darken-1">
             <v-icon>mdi-menu</v-icon>
           </v-btn>
-
                   <AppSearch />
       <v-spacer></v-spacer>  
         <v-toolbar-items> 
-
           <v-row align="center" justify="center">
           <v-btn
             class="rectangle"
@@ -36,9 +32,8 @@
             icon
             color="grey darken-1"
           >
-            <v-icon>mdi-account</v-icon>
+            <v-icon>insert_drive_file</v-icon>
           </v-btn>
-            
           <v-avatar class="v-avatar">
             <img
               alt="John"
@@ -51,17 +46,11 @@
     <v-main>
         <v-content>
               <v-container fluid>
-
                         <AppTable />
-                         <router-view></router-view>
                         <AppDialog />
-
-
               </v-container>
-
         </v-content>
     </v-main>
-
   <v-footer app>
     <!-- -->
   </v-footer>
@@ -75,7 +64,6 @@ import AppDialog from "@/components/AppDialog"
 import AppSearch from "@/components/AppSearch"
 export default {
   name: 'App',
-
   components: {
   AppTable,
   AppDialog,
@@ -97,8 +85,10 @@ export default {
 }
 </script>
 
+ <!--<style scoped> -->
+ 
 
-<style scoped>
+<style lang="scss">
 .v-avatar {
 margin-top: 8;
 width: 32;
