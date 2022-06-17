@@ -89,12 +89,12 @@ export default {
 <style lang="scss">
 //$color: red;
 
-.avatar {
-margin-top: 8;
-width: 10;
-height: 10;
-margin-right: 24;
-}
+//.avatar {
+//margin-top: 8;
+//width: 10;
+//height: 10;
+//margin-right: 24;
+//}
 
 .Vuetify_logo {
 margin-top: 13px;
