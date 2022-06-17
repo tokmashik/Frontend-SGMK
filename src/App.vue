@@ -2,7 +2,7 @@
   <v-app id="app">  
     <v-navigation-drawer class="grey darken-4" dark permanent app absolute width="60">
       <v-card height="48" width="60">
-        <img  class="img" align="center" justify="center"
+        <img  class="Vuetify_logo" align="center" justify="center"
           alt="Vuetify Logo"
           src="@/assets/mainlogo.png"
           width="29.27" height="23">
@@ -20,36 +20,35 @@
     </v-navigation-drawer>
     <v-app-bar app class="white" dense dark>
       <v-btn icon color="grey darken-1">
-            <v-icon>mdi-menu</v-icon>
-          </v-btn>
-                  <AppSearch />
+        <v-icon>mdi-menu</v-icon>
+      </v-btn>
+      <AppSearch />
       <v-spacer></v-spacer>  
-        <v-toolbar-items> 
-          <v-row align="center" justify="center">
-          <v-btn
-            class="rectangle"
-            text
-            icon
-            color="grey darken-1"
-          >
-            <v-icon>insert_drive_file</v-icon>
-          </v-btn>
-          <v-avatar class="v-avatar">
-            <img
-              alt="John"
-              src="https://cdn.vuetifyjs.com/images/john.jpg"
-              >
-          </v-avatar>
-          </v-row>
-        </v-toolbar-items>   
+      <v-toolbar-items> 
+        <v-row align="center" justify="center">
+        <v-btn
+          class="rectangle"
+          text
+          icon
+          color="grey darken-1">
+          <v-icon>insert_drive_file</v-icon>
+        </v-btn>
+        <v-avatar class="avatar">
+        <img
+          alt="John"
+          src="https://cdn.vuetifyjs.com/images/john.jpg">
+        </v-avatar>
+        </v-row>
+      </v-toolbar-items>   
     </v-app-bar>
     <v-main>
-        <v-content>
-              <v-container fluid>
-                        <AppTable />
-                        <AppDialog />
-              </v-container>
-        </v-content>
+      <v-content>
+        <v-container fluid>
+          <AppTable />
+          <AppDialog />
+          <Authentication />
+        </v-container>
+      </v-content>
     </v-main>
   <v-footer app>
     <!-- -->
@@ -58,16 +57,18 @@
 </template>
 
 <script>
-
 import AppTable from "@/components/AppTable"
 import AppDialog from "@/components/AppDialog"
 import AppSearch from "@/components/AppSearch"
+import Authentication from "@/components/Authentication"
+
 export default {
   name: 'App',
   components: {
   AppTable,
   AppDialog,
   AppSearch,
+  Authentication,
   },
   data () {
     return {
@@ -85,18 +86,18 @@ export default {
 }
 </script>
 
- <!--<style scoped> -->
- 
-
 <style lang="scss">
-.v-avatar {
+//$color: red;
+
+.avatar {
 margin-top: 8;
-width: 32;
-height: 32;
+width: 10;
+height: 10;
 margin-right: 24;
 }
 
-.img {
-background-position: center;
+.Vuetify_logo {
+margin-top: 13px;
+margin-left: 15px;
 }
 </style>

@@ -1,3 +1,9 @@
+@import "./Varibles.scss";
+
+body {
+    color: $main-color;
+}
+
 .v-avatar {
 margin-top: 8;
 width: 32;
