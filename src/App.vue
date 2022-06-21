@@ -2,13 +2,13 @@
   <v-app id="app">  
     <v-navigation-drawer class="grey darken-4" dark permanent app absolute width="60">
       <v-card height="48" width="60">
-        <img  class="Vuetify_logo" align="center" justify="center"
+        <img  class="SGMK_logo"
           alt="Vuetify Logo"
           src="@/assets/mainlogo.png"
           width="29.27" height="23">
       </v-card>
       <v-list>
-        <v-list-item v-for="item in items" :key="item.title" link>
+        <v-list-item v-for="item in items" :key="item.title" link :to="item.link">
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -25,7 +25,7 @@
       <AppSearch />
       <v-spacer></v-spacer>  
       <v-toolbar-items> 
-        <v-row align="center" justify="center">
+        <v-row>
         <v-btn
           class="rectangle"
           text
@@ -33,8 +33,8 @@
           color="grey darken-1">
           <v-icon>insert_drive_file</v-icon>
         </v-btn>
-        <v-avatar class="avatar">
-        <img
+        <v-avatar >
+        <img class="avatar"
           alt="John"
           src="https://cdn.vuetifyjs.com/images/john.jpg">
         </v-avatar>
@@ -74,7 +74,7 @@ export default {
     return {
         items: [
           { title: 'Заход', icon: 'mdi-view-dashboard' },
-          { title: 'Акцепт', icon: 'mdi-view-dashboard' },
+          { title: 'Акцепт', icon: 'mdi-view-dashboard', link: '/akcept'},
           { title: 'Задачи', icon: 'mdi-view-dashboard' },
           { title: 'Уведомления', icon: 'mdi-view-dashboard' },
           { title: 'Документооборот', icon: 'mdi-view-dashboard' },
@@ -87,17 +87,13 @@ export default {
 </script>
 
 <style lang="scss">
-//$color: red;
 
-//.avatar {
-//margin-top: 8;
-//width: 10;
-//height: 10;
-//margin-right: 24;
-//}
-
-.Vuetify_logo {
+.SGMK_logo {
 margin-top: 13px;
 margin-left: 15px;
+}
+
+.avatar {
+height: 5px;
 }
 </style>
