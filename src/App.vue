@@ -42,11 +42,12 @@
       </v-toolbar-items>   
     </v-app-bar>
     <v-main>
-      <v-content>
+      <v-content>     
         <v-container fluid>
           <AppTable />
           <AppDialog />
           <Authentication />
+          
         </v-container>
       </v-content>
     </v-main>
@@ -61,6 +62,7 @@ import AppTable from "@/components/AppTable"
 import AppDialog from "@/components/AppDialog"
 import AppSearch from "@/components/AppSearch"
 import Authentication from "@/components/Authentication"
+
 
 export default {
   name: 'App',
@@ -96,4 +98,5 @@ margin-left: 15px;
 .avatar {
 height: 5px;
 }
+
 </style>
