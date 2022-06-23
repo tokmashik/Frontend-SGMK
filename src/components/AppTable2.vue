@@ -48,19 +48,22 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
- 
+
   <v-card>
     <v-data-table
       :headers="headers"
       :items="ts"
       :search="search"
     >
+
+    <!-- @click="dialog = false"-->
+    
     <template v-slot:items="props">
         <td>{{ props.item.name }}</td>
         <td id="transport" name="transport" class="form-control" placeholder="Enter title">{{ props.item.transport }} </td>
         <!-- <td id="title" name="title" class="text-xs-right">{{ props.item.nТС }}</td> -->
         <!-- <td id="title" name="title" class="text-xs-right">{{ props.item.nНакладной }}</td> -->
-         <td id="title" name="title" class="text-xs-right">{{ props.item.date }}</td> 
+        <!-- <td id="title" name="title" class="text-xs-right">{{ props.item.ДатаОтгрузки }}</td> -->
         <!-- <td id="title" name="title" class="text-xs-right">{{ props.item.Поставщик }}</td> -->
         <!-- <td id="title" name="title" class="text-xs-right">{{ props.item.Отправитель }}</td> -->
         <!-- <td id="title" name="title" class="text-xs-right">{{ props.item.МестоОтправления }}</td> -->
@@ -78,9 +81,6 @@
 </template>
 
 <script>
-import axios from "axios";
-import { server } from "../utils/helper";
-import router from "../router/index";
   export default {
     data () {
       return {
@@ -97,6 +97,28 @@ import router from "../router/index";
             value: 'ID',
           },
           { text: 'transport', value: 'transport' },
+          { text: '№ТС', value: 'nТС' },
+          { text: '№Накладной', value: 'nНакладной' },
+          { text: 'Дата отгрузки', value: 'ДатаОтгрузки' },
+          { text: 'Поставщик', value: 'Поставщик' },
+          { text: 'Отправитель', value: 'Отправитель' },
+          { text: 'Место отправления', value: 'МестоОтправления' },
+          { text: 'Направление', value: 'Направление' },
+          { text: 'Получатель', value: 'Получатель' },
+        ],
+        ts: [
+          {
+            transport: '34554',
+            ТС: 'img',
+            nТС: 'U2002505',
+            nНакладной: 'ЭИ588798',
+            ДатаОтгрузки: '27.07.20',
+            Поставщик: 'Лен-Инвест',
+            Отправитель: 'ООО "КЭЛ" (0556678888)',
+            МестоОтправления: 'ЛЕНИНСК -КУЗНЕЦКИЙ_1',
+            Направление: 'ЗСМК ОАО',
+            Получатель: 'ЗСМК (05785874)', 
+          },
         ],
         dialog: false,
       }//,
@@ -104,24 +126,6 @@ import router from "../router/index";
         //this.axios.get()
       //}
     },
-    created() {
-    this.date = new Date().toLocaleDateString();
-    },
-    methods: {
-    Table() {
-      let date = {
-        transport: this.transport,
-        date: this.date
-      };
-      this.__submitToServer(postData);
-    },
-    __submitToServer(data) {
-      axios.post(`${server.baseURL}compliet-cargo/TS`, data).then(data => {
-        console.log(data);
-        router.push({ name: "home" });
-      });
-    }
-  }
   }
 </script>
 

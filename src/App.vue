@@ -44,9 +44,10 @@
     <v-main>
       <v-content>     
         <v-container fluid>
-          <AppTable />
+          <AppTable2 />
           <AppDialog />
           <Authentication />
+          <AuthModal />
           
         </v-container>
       </v-content>
@@ -58,19 +59,21 @@
 </template>
 
 <script>
-import AppTable from "@/components/AppTable"
+import AppTable2 from "@/components/AppTable2"
 import AppDialog from "@/components/AppDialog"
 import AppSearch from "@/components/AppSearch"
 import Authentication from "@/components/Authentication"
+import AuthModal from "@/components/AuthModal"
 
 
 export default {
   name: 'App',
   components: {
-  AppTable,
+  AppTable2,
   AppDialog,
   AppSearch,
   Authentication,
+  AuthModal,
   },
   data () {
     return {
