@@ -1,5 +1,4 @@
 <template>
-
     <v-dialog
       v-model="dialog"
       persistent
@@ -15,7 +14,6 @@
           Авторизация
         </v-btn>
       </template>
-
        <v-card>
           <v-card-text>
             <v-container>
@@ -52,8 +50,6 @@
                 v-on="on">
                 Войти
               </v-btn>
-
-              
             </v-container>
           </v-card-text>
           <v-card-actions>
@@ -75,7 +71,6 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-
 </template>
 
 <script>
@@ -87,7 +82,6 @@
         show2: true,
         show3: false,
         show4: false,
-
         rules: {
           required: value => !!value || 'Required.',
           min: v => v.length >= 8 || 'Min 8 characters',
@@ -95,7 +89,6 @@
         },
         // methods: {
         // event {
-        // логика первого обработчика события...
       }
     },
   }

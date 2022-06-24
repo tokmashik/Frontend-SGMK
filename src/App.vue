@@ -44,11 +44,26 @@
     <v-main>
       <v-content>     
         <v-container fluid>
-          <AppTable2 />
-          <AppDialog />
+          <AppTable />
+          <!-- <AppDialog /> -->
           <Authentication />
-          <AuthModal />
-          
+          <v-spacer></v-spacer>
+          <h4>Фильтр</h4>
+          <input type="search" v-model="search" class="search" placeholder="поиск..."/>
+          <!-- <p> {{searchHandler}} </p> -->
+          <!-- <p> {{search}} </p> -->
+          <!-- <v-btn @click="searchHandler"> search </v-btn> -->
+
+            <ul>
+              <li v-for="item in searchHandler" :key="item.id">
+              <p> <span> transport: {{ item.transport }} </span></p>
+              <p>
+               cargo: {{ item.cargo }}
+              </p>
+              </li>
+            </ul>
+
+
         </v-container>
       </v-content>
     </v-main>
@@ -59,24 +74,24 @@
 </template>
 
 <script>
-import AppTable2 from "@/components/AppTable2"
+import AppTable from "@/components/AppTable"
 import AppDialog from "@/components/AppDialog"
 import AppSearch from "@/components/AppSearch"
 import Authentication from "@/components/Authentication"
-import AuthModal from "@/components/AuthModal"
 
+import {TableTS} from '../src/table'
 
 export default {
   name: 'App',
   components: {
-  AppTable2,
+  AppTable,
   AppDialog,
   AppSearch,
   Authentication,
-  AuthModal,
   },
   data () {
     return {
+      search: '',
         items: [
           { title: 'Заход', icon: 'mdi-view-dashboard' },
           { title: 'Акцепт', icon: 'mdi-view-dashboard', link: '/akcept'},
@@ -86,20 +101,30 @@ export default {
           { title: 'Техподдержка', icon: 'mdi-view-dashboard' },
           { title: 'Журнал действий', icon: 'mdi-view-dashboard' },
         ],
+        data: []
+    };
+  },
+  created() {
+    this.data = TableTS;
+    console.log(this.data);
+  },
+  computed: {
+    searchHandler() {
+      return this.data.filter(element => {
+        return element.transport.includes(this.search);
+      });
     }
   }
 }
 </script>
+<!-- return element.cargo.toLowCase().includes(this.search); -->
+
 
 <style lang="scss">
 
 .SGMK_logo {
 margin-top: 13px;
 margin-left: 15px;
-}
-
-.avatar {
-height: 5px;
 }
 
 </style>
