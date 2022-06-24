@@ -127,8 +127,4 @@ margin-top: 13px;
 margin-left: 15px;
 }
 
-//.avatar {
-//height: 5px;
-//}
-
 </style>

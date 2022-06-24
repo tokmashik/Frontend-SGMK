@@ -1,6 +1,6 @@
 <template>
     <div>
-
+        <h1>Uvedomleniya</h1>
     </div>
 </template>
 

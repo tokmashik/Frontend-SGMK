@@ -51,10 +51,11 @@
   
     <!--<v-spacer></v-spacer> -->
     <!--<v-container> -->
+      <!--Фильтр -->
       <!--<v-btn> Все </v-btn> -->
-      <!--<v-btn> img </v-btn> -->
-      <!--<v-btn> 27.07.20 </v-btn> -->
-      <!--<v-btn> 64554 </v-btn> -->
+      <!--<v-btn> ... </v-btn> -->
+      <!--<v-btn> ... </v-btn> -->
+      <!--<v-btn> ... </v-btn> -->
     <!--</v-container> -->
 
   <v-card>
@@ -354,7 +355,6 @@ import router from "../router/index";
         console.log(data);
         router.push({ name: "home" });
       });
-
     }   
     },
       filters: {
@@ -362,6 +362,6 @@ import router from "../router/index";
       return value.ToUpperCase();
       }
   }
-  }
+}
 </script>
 
