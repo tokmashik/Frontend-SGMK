@@ -49,10 +49,17 @@
       </v-card>
     </v-dialog>
 
+    <filters-line
+        class="my-5"
+        @click="handleFilterLineItemClick"
+        @clear="clearFilterLines"
+    />
+
   <v-card>
+
     <v-data-table
       :headers="headers"
-      :items="ts"
+      :items="items"
       :search="search"
     >
 
@@ -81,7 +88,18 @@
 </template>
 
 <script>
+  import FiltersLine from '@/components/FiltersLine.vue';
+
+  const isObjectEmpty = (obj) => {
+    return obj
+    && Object.keys(obj).length === 0
+    && Object.getPrototypeOf(obj) === Object.prototype;
+  }
+
   export default {
+    components: {
+      FiltersLine
+    },
     data () {
       return {
         page: 1,
@@ -119,13 +137,55 @@
             Направление: 'ЗСМК ОАО',
             Получатель: 'ЗСМК (05785874)', 
           },
+          {
+            transport: '34555',
+            ТС: 'img',
+            nТС: 'U2002505',
+            nНакладной: 'ЭИ588798',
+            ДатаОтгрузки: '27.07.20',
+            Поставщик: 'Лен-Инвест',
+            Отправитель: 'ООО "КЭЛ" (0556678888)',
+            МестоОтправления: 'ЛЕНИНСК -КУЗНЕЦКИЙ_1',
+            Направление: 'ЗСМК ОАО',
+            Получатель: 'ЗСМК (05785874)',
+          },
+          {
+            transport: '34556',
+            ТС: 'img',
+            nТС: 'U2002505',
+            nНакладной: 'ЭИ588798',
+            ДатаОтгрузки: '27.07.20',
+            Поставщик: 'Лен-Инвест2',
+            Отправитель: 'ООО "КЭЛ" (0556678888)',
+            МестоОтправления: 'ЛЕНИНСК -КУЗНЕЦКИЙ_1',
+            Направление: 'ЗСМК ОАО',
+            Получатель: 'ЗСМК (05785874)',
+          },
         ],
         dialog: false,
-      }//,
+        filters: {}
+      }
+      //,
       //mounted() {
         //this.axios.get()
       //}
     },
+    computed: {
+      items() {
+        return this.ts?.filter((item) => {
+          if (isObjectEmpty(this.filters)) return true;
+          return !Object.keys(this.filters).some((field) => this.filters[field] !== item[field]);
+        });
+      }
+    },
+    methods: {
+      clearFilterLines() {
+        this.filters = {};
+      },
+      handleFilterLineItemClick({ field, value }) {
+        this.filters = {...this.filters, [field]: value };
+      }
+    }
   }
 </script>
 

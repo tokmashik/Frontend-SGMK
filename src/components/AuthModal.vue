@@ -84,7 +84,7 @@ export default {
     }
   },
   mounted () {
-    this.$modal.show('auth-modal')
+    // this.$modal.show('auth-modal') тут ошибка
   },
   methods: {
     changeUserState() {
