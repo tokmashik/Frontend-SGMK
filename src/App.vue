@@ -44,24 +44,24 @@
     <v-main>
       <v-content>     
         <v-container fluid>
-          <AppTable />
+          <AppTable2 />
           <!-- <AppDialog /> -->
           <Authentication />
-          <v-spacer></v-spacer>
-          <h4>Фильтр</h4>
-          <input type="search" v-model="search" class="search" placeholder="поиск..."/>
+          <!-- <v-spacer></v-spacer>-->
+          <!-- <h4>Фильтр</h4>-->
+          <!-- <input type="search" v-model="search" class="search" placeholder="поиск..."/>-->
           <!-- <p> {{searchHandler}} </p> -->
           <!-- <p> {{search}} </p> -->
           <!-- <v-btn @click="searchHandler"> search </v-btn> -->
 
-            <ul>
-              <li v-for="item in searchHandler" :key="item.id">
-              <p> <span> transport: {{ item.transport }} </span></p>
-              <p>
-               cargo: {{ item.cargo }}
-              </p>
-              </li>
-            </ul>
+            <!--<ul>-->
+             <!-- <li v-for="item in searchHandler" :key="item.id">-->
+             <!-- <p> <span> transport: {{ item.transport }} </span></p>-->
+             <!-- <p>-->
+              <!-- cargo: {{ item.cargo }}-->
+             <!-- </p>-->
+             <!-- </li>-->
+          <!--  </ul>-->
 
 
         </v-container>
@@ -73,18 +73,17 @@
   </v-app>
 </template>
 
+<!--import {TableTS} from '../src/table'-->
+
 <script>
-import AppTable from "@/components/AppTable"
+import AppTable2 from "@/components/AppTable2"
 import AppDialog from "@/components/AppDialog"
 import AppSearch from "@/components/AppSearch"
 import Authentication from "@/components/Authentication"
-
-import {TableTS} from '../src/table'
-
 export default {
   name: 'App',
   components: {
-  AppTable,
+  AppTable2,
   AppDialog,
   AppSearch,
   Authentication,
@@ -104,6 +103,10 @@ export default {
         data: []
     };
   },
+  
+}
+</script>
+<!-- 
   created() {
     this.data = TableTS;
     console.log(this.data);
@@ -114,9 +117,7 @@ export default {
         return element.transport.includes(this.search);
       });
     }
-  }
-}
-</script>
+  }-->
 <!-- return element.cargo.toLowCase().includes(this.search); -->
 
 

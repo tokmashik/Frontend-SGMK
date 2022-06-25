@@ -11,6 +11,11 @@ import './assets/Main.scss'
 
 import router from './router/index'
 
+export const server = {
+  baseURL: 'http://localhost:3000'
+}
+
+
 Vue.use(VueRouter)
 
 Vue.prototype.axios = axios

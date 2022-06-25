@@ -59,7 +59,7 @@
 
     <v-data-table
       :headers="headers"
-      :items="items"
+      :items="transport"
       :search="search"
     >
 
@@ -67,15 +67,14 @@
     
     <template v-slot:items="props">
         <td>{{ props.item.name }}</td>
-        <td id="transport" name="transport" class="form-control" placeholder="Enter title">{{ props.item.transport }} </td>
-        <!-- <td id="title" name="title" class="text-xs-right">{{ props.item.nТС }}</td> -->
-        <!-- <td id="title" name="title" class="text-xs-right">{{ props.item.nНакладной }}</td> -->
-        <!-- <td id="title" name="title" class="text-xs-right">{{ props.item.ДатаОтгрузки }}</td> -->
-        <!-- <td id="title" name="title" class="text-xs-right">{{ props.item.Поставщик }}</td> -->
-        <!-- <td id="title" name="title" class="text-xs-right">{{ props.item.Отправитель }}</td> -->
-        <!-- <td id="title" name="title" class="text-xs-right">{{ props.item.МестоОтправления }}</td> -->
-        <!-- <td id="title" name="title" class="text-xs-right">{{ props.item.Направление }}</td> -->
-        <!-- <td id="title" name="title" class="text-xs-right">{{ props.item.Получатель }}</td> -->
+        <td id="transportNumber" name="transportNumber" class="transportNumber" placeholder="transportNumber">{{ props.item.transport }} </td>
+        <td id="documentNumber" name="documentNumber" class="documentNumber" placeholder="documentNumber">{{ props.item.transport }} </td>
+        <td id="weightFirst" name="weightFirst" class="weightFirst" placeholder="weightFirst">{{ props.item.transport }} </td>
+        <td id="arrivalDate" name="arrivalDate" class="arrivalDate" placeholder="arrivalDate">{{ props.item.transport }} </td>
+        <td id="shipmentDate" name="shipmentDate" class="shipmentDate" placeholder="shipmentDate">{{ props.item.transport }} </td>
+        <td id="problemId" name="problemId" class="problemId" placeholder="problemId">{{ props.item.transport }} </td>
+
+
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -89,11 +88,16 @@
 
 <script>
   import FiltersLine from '@/components/FiltersLine.vue';
+  import axios from 'axios';
 
   const isObjectEmpty = (obj) => {
     return obj
     && Object.keys(obj).length === 0
     && Object.getPrototypeOf(obj) === Object.prototype;
+  }
+
+  export const server = {
+    baseURL: 'http://localhost:3000'
   }
 
   export default {
@@ -106,7 +110,7 @@
         pageCount: 0,
         itemsPerPage: 10,
         search: '',
-        transport: " ",
+        transport: [],
         headers: [
           {
             text: 'ID',
@@ -114,54 +118,15 @@
             sortable: false,
             value: 'ID',
           },
-          { text: 'transport', value: 'transport' },
-          { text: '№ТС', value: 'nТС' },
-          { text: '№Накладной', value: 'nНакладной' },
-          { text: 'Дата отгрузки', value: 'ДатаОтгрузки' },
-          { text: 'Поставщик', value: 'Поставщик' },
-          { text: 'Отправитель', value: 'Отправитель' },
-          { text: 'Место отправления', value: 'МестоОтправления' },
-          { text: 'Направление', value: 'Направление' },
-          { text: 'Получатель', value: 'Получатель' },
+          { text: 'id', value: 'id' },
+          { text: 'transportNumber', value: 'transportNumber' },
+          { text: 'documentNumber', value: 'documentNumber' },
+          { text: 'weightFirst', value: 'weightFirst' },
+          { text: 'arrivalDate', value: 'arrivalDate' },
+          { text: 'shipmentDate', value: 'shipmentDate' },
+          { text: 'problemId', value: 'problemId' },
         ],
-        ts: [
-          {
-            transport: '34554',
-            ТС: 'img',
-            nТС: 'U2002505',
-            nНакладной: 'ЭИ588798',
-            ДатаОтгрузки: '27.07.20',
-            Поставщик: 'Лен-Инвест',
-            Отправитель: 'ООО "КЭЛ" (0556678888)',
-            МестоОтправления: 'ЛЕНИНСК -КУЗНЕЦКИЙ_1',
-            Направление: 'ЗСМК ОАО',
-            Получатель: 'ЗСМК (05785874)', 
-          },
-          {
-            transport: '34555',
-            ТС: 'img',
-            nТС: 'U2002505',
-            nНакладной: 'ЭИ588798',
-            ДатаОтгрузки: '27.07.20',
-            Поставщик: 'Лен-Инвест',
-            Отправитель: 'ООО "КЭЛ" (0556678888)',
-            МестоОтправления: 'ЛЕНИНСК -КУЗНЕЦКИЙ_1',
-            Направление: 'ЗСМК ОАО',
-            Получатель: 'ЗСМК (05785874)',
-          },
-          {
-            transport: '34556',
-            ТС: 'img',
-            nТС: 'U2002505',
-            nНакладной: 'ЭИ588798',
-            ДатаОтгрузки: '27.07.20',
-            Поставщик: 'Лен-Инвест2',
-            Отправитель: 'ООО "КЭЛ" (0556678888)',
-            МестоОтправления: 'ЛЕНИНСК -КУЗНЕЦКИЙ_1',
-            Направление: 'ЗСМК ОАО',
-            Получатель: 'ЗСМК (05785874)',
-          },
-        ],
+
         dialog: false,
         filters: {}
       }
@@ -170,6 +135,8 @@
         //this.axios.get()
       //}
     },
+
+    
     computed: {
       items() {
         return this.ts?.filter((item) => {
@@ -185,7 +152,20 @@
       handleFilterLineItemClick({ field, value }) {
         this.filters = {...this.filters, [field]: value };
       }
-    }
+    },
+      created() {
+      this.load()
+      // this.getOne()
+      },
+      methods: {
+      async load(){
+      // new td = new Transport()
+      axios.get(`${server.baseURL}/compliet-cargo/TS`).then(data => (this.transport = data.data))
+     /* const result = await axios.get(`${server.baseURL}/compliet-cargo/TS`);
+      this.transportNumber = result.data;
+      console.log(this.transportNumber);*/
+      },
+      }
   }
 </script>
 

@@ -48,26 +48,28 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-<div class="filters-line">
-    <v-chip
-        :key="item.field"
-        v-for="item in items"
-        class="mr-2"
-        @click="$emit('click', item)"
-    >
-      {{ item.label }}
-    </v-chip>
-    <v-chip @click="$emit('clear')">Сбросить фильтры</v-chip>
-  </div>
+
+    <filters-line
+        class="my-5"
+        @click="handleFilterLineItemClick"
+        @clear="clearFilterLines"
+    />
+
   <v-card>
+
     <v-data-table
       :headers="headers"
-      :items="ts"
+      :items="items"
       :search="search"
     >
+
+    <!-- @click="dialog = false"-->
+    
     <template v-slot:items="props">
         <td>{{ props.item.name }}</td>
-        <td id="transport" name="transport" class="transport" placeholder="transport">{{ props.item.transport}} </td>
+        <td id="transportNumber" name="transportNumber" class="transportNumber" placeholder="transportNumber">{{ props.item.transportNumber }} </td>
+
+
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -80,20 +82,30 @@
 </template>
 
 <script>
-import axios from "axios";
-import { server } from "../utils/helper";
+  import FiltersLine from '@/components/FiltersLine.vue';
+  import axios from 'axios';
+  import helper from '../utils/helper.js';
+
+  const isObjectEmpty = (obj) => {
+    return obj
+    && Object.keys(obj).length === 0
+    && Object.getPrototypeOf(obj) === Object.prototype;
+  }
+  export const server = {
+    baseURL: 'http://localhost:3000'
+  }
+
   export default {
+    components: {
+      FiltersLine
+    },
     data () {
       return {
         page: 1,
         pageCount: 0,
         itemsPerPage: 10,
         search: '',
-        transport: " ",
-        items: [
-      { label: 'Поставщик Лен-Инвест', value: 'Лен-Инвест', field: 'Поставщик' },
-      { label: 'Все ТСы с кодом 34554', value: '34554', field: 'transport' }
-    ],
+        transportNumber: [],
         headers: [
           {
             text: 'ID',
@@ -101,52 +113,48 @@ import { server } from "../utils/helper";
             sortable: false,
             value: 'ID',
           },
-          { text: 'transport', value: 'transport' },
+          { text: 'transportNumber', value: 'transportNumber' },
         ],
-        ts: [
-          {
-            ID: '34554',
-            transport: 'transport',
-          },
-        ],
+
         dialog: false,
+        filters: {}
+      }
+      //,
+      //mounted() {
+        //this.axios.get()
+      //}
+    },
+
+    
+    computed: {
+      items() {
+        return this.ts?.filter((item) => {
+          if (isObjectEmpty(this.filters)) return true;
+          return !Object.keys(this.filters).some((field) => this.filters[field] !== item[field]);
+        });
       }
     },
-        
-      filters: {
-      'filt': function(value) {
-      return value.ToUpperCase();
+    methods: {
+      clearFilterLines() {
+        this.filters = {};
+      },
+      handleFilterLineItemClick({ field, value }) {
+        this.filters = {...this.filters, [field]: value };
       }
-  },
-
+    },
       created() {
       this.load()
       // this.getOne()
       },
       methods: {
-      load(){
+      async load(){
       // new td = new Transport()
-      axios.get(`${server.baseURL}/compliet-cargo/TS`).then(data => (this.ts = data.data))
-      console.log(ts)
+     // axios.get(`${server.baseURL}/compliet-cargo/TS`).then(data => {this.transportNumber = data.data; console.log(data.data)})
+      const result = await axios.get(`${server.baseURL}/compliet-cargo/TS`);
+      this.transportNumber = result.data;
+      console.log(this.transportNumber);
       },
-}
+      }
   }
 </script>
-<!-- created() {
-    this.date = new Date().toLocaleDateString();
-    },
-    methods: {
-    Table() {
-      let date = {
-        transport: this.transport,
-        date: this.date
-      };
-      this.__submitToServer(postData);
-    },
-    __submitToServer(data) {
-      axios.post(`${server.baseURL}compliet-cargo/TS`, data).then(data => {
-        console.log(data);
-        router.push({ name: "home" });
-      });
-    }   
-    }, -->
+
