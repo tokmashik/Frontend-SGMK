@@ -27,25 +27,251 @@
 
       <v-card>
         <v-card-text>
+          <v-card-title>
+          <span class="text-h5">Приемка по качеству</span>
+          <h5>
+            Транспортное средство #...
+            Накладная №...
+          </h5>
+        </v-card-title>
+
+        <v-card-text>
+          <h5>Виды лома заявленные поставщиком</h5>
           <v-container>
-            content
+            <v-row>
+              <v-col
+                cols="12"
+                sm="6"
+                md="4"
+              >
+              <h5>Виды лома</h5> 
+                <v-text-field
+                  label="5а"
+                  required
+                  disabled
+                ></v-text-field>
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+                md="4"
+              >
+               <h5>Вес (Т)</h5> 
+                <v-text-field
+                  label="0,630"
+                  required
+                  disabled
+                ></v-text-field>
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+                md="4"
+              >
+               <h5>Вес по приемке (Т)</h5> 
+                <v-text-field
+                  label=" "  
+                  persistent-hint
+                  required
+                  outlined
+                  dense
+                ></v-text-field>
+              </v-col>
+
+              <v-col
+                cols="12"
+                sm="6"
+                md="4"
+              >
+              <h5>Виды лома</h5> 
+                <v-text-field
+                  label="7а"
+                  required
+                  disabled
+                ></v-text-field>
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+                md="4"
+              >
+               <h5>Вес (Т)</h5> 
+                <v-text-field
+                  label="0,840"
+                  required
+                  disabled
+                ></v-text-field>
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+                md="4"
+              >
+               <h5>Вес по приемке (Т)</h5> 
+                <v-text-field
+                  label=" "  
+                  persistent-hint
+                  required
+                  outlined
+                  dense
+                ></v-text-field>
+              </v-col>
+              
+              
+              <h5>Виды лома незаявленные поставщиком</h5>
+              <v-spacer></v-spacer>
+              <v-col
+                cols="12"
+                sm="6"
+                md="8"
+              >
+              <h5>Виды лома</h5>
+
+                 <v-autocomplete
+            ref="lom_"
+            v-model="lom_"
+            :items="lom"
+            label="Выбор лома"
+            placeholder="Вид..."
+            required
+            clearable
+          ></v-autocomplete>
+           </v-col>
+           <v-col
+                cols="12"
+                sm="6"
+                md="4"
+              >
+               <h5>Вес по приемке (Т)</h5> 
+                <v-text-field
+                  label=" "  
+                  persistent-hint
+                  required
+                  outlined
+                  dense
+                  clearable
+                ></v-text-field>
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+                md="8"
+              >
+              <h5>Виды лома</h5>
+
+          <v-autocomplete
+            ref="lom_"
+            v-model="lom_"
+            :items="lom"
+            label="Выбор лома"
+            placeholder="Вид..."
+            required
+            clearable
+          ></v-autocomplete>
+           </v-col>
+           <v-col
+                cols="12"
+                sm="6"
+                md="4"
+              >
+               <h5>Вес по приемке (Т)</h5> 
+                <v-text-field
+                  label=" "  
+                  persistent-hint
+                  required
+                  outlined
+                  dense
+                  clearable
+                ></v-text-field>
+              </v-col>
+
+              <h5>Наличие мусора обнаруженного при проверке</h5>
+              <v-spacer></v-spacer>
+              <v-col
+                cols="12"
+                sm="6"
+                md="8"
+              >
+               <h5>Неотделимый мусор</h5> 
+                <v-text-field
+                  label=" "  
+                  persistent-hint
+                  required
+                  outlined
+                  dense
+                  clearable
+                ></v-text-field>
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+                md="4"
+              >
+               <h5>Вес (Т)</h5> 
+                <v-text-field
+                  label=" "  
+                  persistent-hint
+                  required
+                  outlined
+                  dense
+                  clearable
+                ></v-text-field>
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+                md="8"
+              >
+               <h5>Отделимый мусор</h5> 
+                <v-text-field
+                  label=" "  
+                  persistent-hint
+                  required
+                  outlined
+                  dense
+                  clearable
+                ></v-text-field>
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+                md="4"
+              >
+               <h5>Вес (Т)</h5> 
+                <v-text-field
+                  label=" "  
+                  persistent-hint
+                  required
+                  outlined
+                  dense
+                  clearable
+                ></v-text-field>
+              </v-col>
+              
+            </v-row>
           </v-container>
+          <small>*Сохранить перед закрытием окна</small>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
             color="blue darken-1"
             text
-            @click="dialog = false">
+            @click="dialog = false"
+          >
             Close
           </v-btn>
           <v-btn
             color="blue darken-1"
             text
-            @click="dialog = false">
+            @click="dialog = false"
+          >
             Save
           </v-btn>
         </v-card-actions>
+
+
+        </v-card-text>
       </v-card>
     </v-dialog>
 
@@ -72,7 +298,7 @@
         <td id="weightFirst" name="weightFirst" class="weightFirst" placeholder="weightFirst">{{ props.item.transport }} </td>
         <td id="arrivalDate" name="arrivalDate" class="arrivalDate" placeholder="arrivalDate">{{ props.item.transport }} </td>
         <td id="shipmentDate" name="shipmentDate" class="shipmentDate" placeholder="shipmentDate">{{ props.item.transport }} </td>
-        <td id="problemId" name="problemId" class="problemId" placeholder="problemId">{{ props.item.transport }} </td>
+         <!--<td id="problemId" name="problemId" class="problemId" placeholder="problemId">{{ props.item.transport }} </td>-->
 
 
       </template>
@@ -110,21 +336,19 @@
         pageCount: 0,
         itemsPerPage: 10,
         search: '',
+        lom: ['5а', '7а', '3в', '4в','6н','2в','9р','12м','14в','17б','9д','3а',],
         transport: [],
         headers: [
           {
-            text: 'ID',
             align: 'start',
             sortable: false,
-            value: 'ID',
           },
-          { text: 'id', value: 'id' },
-          { text: 'transportNumber', value: 'transportNumber' },
-          { text: 'documentNumber', value: 'documentNumber' },
-          { text: 'weightFirst', value: 'weightFirst' },
-          { text: 'arrivalDate', value: 'arrivalDate' },
-          { text: 'shipmentDate', value: 'shipmentDate' },
-          { text: 'problemId', value: 'problemId' },
+          { text: 'ID', value: 'id' },
+          { text: '№ ТС', value: 'transportNumber' },
+          { text: '№ Накладной', value: 'documentNumber' },
+          { text: 'Вес', value: 'weightFirst' },
+          { text: 'Дата отгрузки', value: 'arrivalDate' },
+          { text: 'Дата', value: 'shipmentDate' },
         ],
 
         dialog: false,

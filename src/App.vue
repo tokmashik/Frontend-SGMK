@@ -20,7 +20,7 @@
     </v-navigation-drawer>
     <v-app-bar app class="white" dense dark>
       <v-btn icon color="grey darken-1">
-        <v-icon>mdi-menu</v-icon>
+        <v-icon  >mdi-menu</v-icon>
       </v-btn>
       <AppSearch />
       <v-spacer></v-spacer>  
@@ -33,8 +33,8 @@
           color="grey darken-1">
           <v-icon>insert_drive_file</v-icon>
         </v-btn>
-        <v-avatar >
-        <img class="avatar"
+        <v-avatar class="avatar" >
+        <img
           alt="John"
           src="https://cdn.vuetifyjs.com/images/john.jpg">
         </v-avatar>
@@ -127,5 +127,14 @@ export default {
 margin-top: 13px;
 margin-left: 15px;
 }
+
+.avatar {
+  margin-top: 10px;
+}
+
+.grey darken-1 {
+   margin-top: 10px;
+}
+
 
 </style>
