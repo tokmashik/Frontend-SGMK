@@ -14,7 +14,8 @@
      <v-dialog
       v-model="dialog"
       persistent
-      max-width="600px">
+      max-width="650px"
+      class="modal">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
           color="#EA5F4B"
@@ -28,7 +29,7 @@
       <v-card>
         <v-card-text>
           <v-card-title>
-          <span class="text-h5">Приемка по качеству</span>
+          <span class="text-h5">Приемка по качеству</span> 
           <h5>
             Транспортное средство #...
             Накладная №...
@@ -72,9 +73,7 @@
                 <v-text-field
                   label=" "  
                   persistent-hint
-                  required
-                  outlined
-                  dense
+                  required                  
                 ></v-text-field>
               </v-col>
 
@@ -111,10 +110,10 @@
                 <v-text-field
                   label=" "  
                   persistent-hint
-                  required
-                  outlined
-                  dense
+                  required 
                 ></v-text-field>
+                <!-- outlined
+                  dense -->
               </v-col>
               
               
@@ -126,16 +125,15 @@
                 md="8"
               >
               <h5>Виды лома</h5>
-
-                 <v-autocomplete
-            ref="lom_"
-            v-model="lom_"
-            :items="lom"
-            label="Выбор лома"
-            placeholder="Вид..."
-            required
-            clearable
-          ></v-autocomplete>
+                <v-autocomplete
+                  ref="lom_"
+                  v-model="lom_"
+                  :items="lom"
+                  label="Выбор лома"
+                  placeholder="Вид..."
+                  required
+                  clearable
+                ></v-autocomplete>
            </v-col>
            <v-col
                 cols="12"
@@ -147,8 +145,6 @@
                   label=" "  
                   persistent-hint
                   required
-                  outlined
-                  dense
                   clearable
                 ></v-text-field>
               </v-col>
@@ -179,8 +175,6 @@
                   label=" "  
                   persistent-hint
                   required
-                  outlined
-                  dense
                   clearable
                 ></v-text-field>
               </v-col>
@@ -197,8 +191,6 @@
                   label=" "  
                   persistent-hint
                   required
-                  outlined
-                  dense
                   clearable
                 ></v-text-field>
               </v-col>
@@ -212,8 +204,6 @@
                   label=" "  
                   persistent-hint
                   required
-                  outlined
-                  dense
                   clearable
                 ></v-text-field>
               </v-col>
@@ -227,8 +217,6 @@
                   label=" "  
                   persistent-hint
                   required
-                  outlined
-                  dense
                   clearable
                 ></v-text-field>
               </v-col>
@@ -242,8 +230,6 @@
                   label=" "  
                   persistent-hint
                   required
-                  outlined
-                  dense
                   clearable
                 ></v-text-field>
               </v-col>
@@ -288,9 +274,6 @@
       :items="transport"
       :search="search"
     >
-
-    <!-- @click="dialog = false"-->
-    
     <template v-slot:items="props">
         <td>{{ props.item.name }}</td>
         <td id="transportNumber" name="transportNumber" class="transportNumber" placeholder="transportNumber">{{ props.item.transport }} </td>
@@ -299,8 +282,6 @@
         <td id="arrivalDate" name="arrivalDate" class="arrivalDate" placeholder="arrivalDate">{{ props.item.transport }} </td>
         <td id="shipmentDate" name="shipmentDate" class="shipmentDate" placeholder="shipmentDate">{{ props.item.transport }} </td>
          <!--<td id="problemId" name="problemId" class="problemId" placeholder="problemId">{{ props.item.transport }} </td>-->
-
-
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -350,17 +331,10 @@
           { text: 'Дата отгрузки', value: 'arrivalDate' },
           { text: 'Дата', value: 'shipmentDate' },
         ],
-
         dialog: false,
         filters: {}
       }
-      //,
-      //mounted() {
-        //this.axios.get()
-      //}
     },
-
-    
     computed: {
       items() {
         return this.ts?.filter((item) => {
@@ -379,17 +353,19 @@
     },
       created() {
       this.load()
-      // this.getOne()
       },
       methods: {
       async load(){
-      // new td = new Transport()
       axios.get(`${server.baseURL}/compliet-cargo/TS`).then(data => (this.transport = data.data))
-     /* const result = await axios.get(`${server.baseURL}/compliet-cargo/TS`);
-      this.transportNumber = result.data;
-      console.log(this.transportNumber);*/
       },
-      }
+    }
   }
 </script>
 
+<style lang="scss">
+
+.modal {
+position: fixed;
+margin-left: 20px;
+}
+</style>
