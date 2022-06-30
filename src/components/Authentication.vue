@@ -74,6 +74,12 @@
 </template>
 
 <script>
+  import axios from 'axios';
+
+  export const server = {
+    baseURL: 'http://localhost:3000'
+  }
+
   export default {
     data () {
       return {
@@ -87,10 +93,18 @@
           min: v => v.length >= 8 || 'Min 8 characters',
           emailMatch: () => (`The email and password you entered don't match`),
         },
-        // methods: {
-        // event {
       }
     },
+    
+      created() {
+      this.load()
+      },
+
+      methods: {
+      async load(){
+      axios.get(`${server.baseURL}/compliet-cargo/TS`).then(data => (this.transport = data.data))
+      },
+    }
   }
 </script>
 
