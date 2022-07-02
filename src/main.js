@@ -8,13 +8,11 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css' // Ensure
 import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
 
 import './assets/Main.scss'
-
 import router from './router/index'
 
 export const server = {
   baseURL: 'http://localhost:3000'
 }
-
 
 Vue.use(VueRouter)
 

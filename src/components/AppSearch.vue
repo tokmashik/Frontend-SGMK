@@ -24,12 +24,8 @@
         items: [],
         search: null,
         select: null,
-        states: [
-          'Alabama',
-          'Maine',
-          'West Virginia',
-          'Wisconsin',
-          'Wyoming',
+        items: [
+          '...',
         ],
       }
     },

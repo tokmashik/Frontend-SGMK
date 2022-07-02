@@ -75,7 +75,6 @@
 
 <script>
   import axios from 'axios';
-
   export const server = {
     baseURL: 'http://localhost:3000'
   }
@@ -95,7 +94,7 @@
         },
       }
     },
-    
+
       created() {
       this.load()
       },

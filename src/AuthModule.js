@@ -1,4 +1,4 @@
-import { AuthAPI } from "./autMetods";
+/**import { AuthAPI } from "./autMetods";
 import { UserRoles } from "@/aut"
 
 export const AuthModule = {
@@ -50,6 +50,5 @@ export const AuthModule = {
             commit('setUserRole', null);
         }
     }
-
-
 }
+**/

@@ -26,13 +26,6 @@
       <v-spacer></v-spacer>  
       <v-toolbar-items> 
         <v-row>
-      <!--  <v-btn
-          class="rectangle"
-          text
-          icon
-          color="grey darken-1">
-          <v-icon>insert_drive_file</v-icon>
-        </v-btn> -->
         <v-avatar class="avatar" >
         <img
           alt="John"
@@ -45,8 +38,8 @@
       <v-content>     
         <v-container fluid>
           <Authentication />
-          <AppTable2 />
-          <!-- <AppDialog /> -->
+          <AppTable_filters />
+          <AppTable />
 
           <!-- <v-spacer></v-spacer>-->
           <!-- <h4>Фильтр</h4>-->
@@ -64,7 +57,6 @@
              <!-- </li>-->
           <!--  </ul>-->
 
-
         </v-container>
       </v-content>
     </v-main>
@@ -74,20 +66,20 @@
   </v-app>
 </template>
 
-<!--import {TableTS} from '../src/table'-->
-
 <script>
-import AppTable2 from "@/components/AppTable2"
+import AppTable from "@/components/AppTable"
+import AppTable_filters from "@/components/AppTable_filters"
 import AppDialog from "@/components/AppDialog"
 import AppSearch from "@/components/AppSearch"
 import Authentication from "@/components/Authentication"
 export default {
   name: 'App',
   components: {
-  AppTable2,
+  AppTable_filters,
   AppDialog,
   AppSearch,
   Authentication,
+  AppTable,
   },
   data () {
     return {
@@ -95,34 +87,20 @@ export default {
         items: [
           { title: 'Заход', icon: 'mdi-view-dashboard' },
           { title: 'Акцепт', icon: 'mdi-view-dashboard', link: '/akcept'},
-          { title: 'Задачи', icon: 'mdi-view-dashboard' },
-          { title: 'Уведомления', icon: 'mdi-view-dashboard' },
-          { title: 'Документооборот', icon: 'mdi-view-dashboard' },
-          { title: 'Техподдержка', icon: 'mdi-view-dashboard' },
-          { title: 'Журнал действий', icon: 'mdi-view-dashboard' },
+          { title: 'Задачи', icon: 'mdi-view-dashboard', link: '/zadachi'},
+          { title: 'Уведомления', icon: 'mdi-view-dashboard', link: '/uvedomleniya'},
+          { title: 'Документооборот', icon: 'mdi-view-dashboard', link: '/dokumentooborot'},
+          { title: 'Техподдержка', icon: 'mdi-view-dashboard', link: '/tehpodderzhka'},
+          { title: 'Журнал действий', icon: 'mdi-view-dashboard', link: '/zhurnal_deystviy' },
         ],
         data: []
     };
-  },
-  
+  }, 
 }
 </script>
-<!-- 
-  created() {
-    this.data = TableTS;
-    console.log(this.data);
-  },
-  computed: {
-    searchHandler() {
-      return this.data.filter(element => {
-        return element.transport.includes(this.search);
-      });
-    }
-  }-->
-<!-- return element.cargo.toLowCase().includes(this.search); -->
-
 
 <style lang="scss">
+
 .SGMK_logo {
 margin-top: 13px;
 margin-left: 15px;

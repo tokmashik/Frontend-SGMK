@@ -48,13 +48,11 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-
     <filters-line
         class="my-5"
         @click="handleFilterLineItemClick"
         @clear="clearFilterLines"
     />
-
   <v-card>
 
     <v-data-table
@@ -62,14 +60,10 @@
       :items="items"
       :search="search"
     >
-
-    <!-- @click="dialog = false"-->
     
     <template v-slot:items="props">
         <td>{{ props.item.name }}</td>
-        <td id="transportNumber" name="transportNumber" class="transportNumber" placeholder="transportNumber">{{ props.item.transportNumber }} </td>
-
-
+        <td id="transport" name="transport" class="form-control" placeholder="Enter title">{{ props.item.transport }} </td>
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning">
@@ -83,16 +77,11 @@
 
 <script>
   import FiltersLine from '@/components/FiltersLine.vue';
-  import axios from 'axios';
-  import helper from '../utils/helper.js';
 
   const isObjectEmpty = (obj) => {
     return obj
     && Object.keys(obj).length === 0
     && Object.getPrototypeOf(obj) === Object.prototype;
-  }
-  export const server = {
-    baseURL: 'http://localhost:3000'
   }
 
   export default {
@@ -105,7 +94,7 @@
         pageCount: 0,
         itemsPerPage: 10,
         search: '',
-        transportNumber: [],
+        transport: " ",
         headers: [
           {
             text: 'ID',
@@ -113,19 +102,58 @@
             sortable: false,
             value: 'ID',
           },
-          { text: 'transportNumber', value: 'transportNumber' },
+          { text: 'transport', value: 'transport' },
+          { text: '№ТС', value: 'nТС' },
+          { text: '№Накладной', value: 'nНакладной' },
+          { text: 'Дата отгрузки', value: 'ДатаОтгрузки' },
+          { text: 'Поставщик', value: 'Поставщик' },
+          { text: 'Отправитель', value: 'Отправитель' },
+          { text: 'Место отправления', value: 'МестоОтправления' },
+          { text: 'Направление', value: 'Направление' },
+          { text: 'Получатель', value: 'Получатель' },
         ],
-
+        ts: [
+          {
+            transport: '34554',
+            ТС: 'img',
+            nТС: 'U2002505',
+            nНакладной: 'ЭИ588798',
+            ДатаОтгрузки: '27.07.20',
+            Поставщик: 'Лен-Инвест',
+            Отправитель: 'ООО "КЭЛ" (0556678888)',
+            МестоОтправления: 'ЛЕНИНСК -КУЗНЕЦКИЙ_1',
+            Направление: 'ЗСМК ОАО',
+            Получатель: 'ЗСМК (05785874)', 
+          },
+          {
+            transport: '34555',
+            ТС: 'img',
+            nТС: 'U2002505',
+            nНакладной: 'ЭИ588798',
+            ДатаОтгрузки: '27.07.20',
+            Поставщик: 'Лен-Инвест',
+            Отправитель: 'ООО "КЭЛ" (0556678888)',
+            МестоОтправления: 'ЛЕНИНСК -КУЗНЕЦКИЙ_1',
+            Направление: 'ЗСМК ОАО',
+            Получатель: 'ЗСМК (05785874)',
+          },
+          {
+            transport: '34556',
+            ТС: 'img',
+            nТС: 'U2002505',
+            nНакладной: 'ЭИ588798',
+            ДатаОтгрузки: '27.07.20',
+            Поставщик: 'Лен-Инвест2',
+            Отправитель: 'ООО "КЭЛ" (0556678888)',
+            МестоОтправления: 'ЛЕНИНСК -КУЗНЕЦКИЙ_1',
+            Направление: 'ЗСМК ОАО',
+            Получатель: 'ЗСМК (05785874)',
+          },
+        ],
         dialog: false,
         filters: {}
       }
-      //,
-      //mounted() {
-        //this.axios.get()
-      //}
     },
-
-    
     computed: {
       items() {
         return this.ts?.filter((item) => {
@@ -141,20 +169,7 @@
       handleFilterLineItemClick({ field, value }) {
         this.filters = {...this.filters, [field]: value };
       }
-    },
-      created() {
-      this.load()
-      // this.getOne()
-      },
-      methods: {
-      async load(){
-      // new td = new Transport()
-     // axios.get(`${server.baseURL}/compliet-cargo/TS`).then(data => {this.transportNumber = data.data; console.log(data.data)})
-      const result = await axios.get(`${server.baseURL}/compliet-cargo/TS`);
-      this.transportNumber = result.data;
-      console.log(this.transportNumber);
-      },
-      }
+    }
   }
 </script>
 
